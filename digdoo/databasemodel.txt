@@ -1,0 +1,113 @@
+	'/'	
+	'/[business]'		only business owners can view this
+	'/dashboard'		only moderators can view this screen
+			
+ _______________
+|		|
+|  User Table	|
+|_______________|________________________________________________________________________________________________________________________________________________________
+
+	user_id					string			sdf3g21...
+	username				string 			jamcam
+	full_name				string			James Richmond
+	created_at				datetime		2023-23-11 21:12:13
+	updated_at				datetime
+	last_login				datetime		2023-27-11 10:39:55
+	provider				string			GitHub, Google, Yahoo
+	provider_identifier			string			jblackenmusic@gmail.com
+	email					string 			jblackenmusic@gmail.com	
+	is_moderator				boolean			true
+
+
+ ___________________
+|		    |
+|  Business Table   |
+|___________________|_____________________________________________________________________________________________________________________________________________________
+
+	business_id				string			sdf3g21...
+	name					string 			La Fogata				
+	industry				string			Restaraunt 						( Categorize businesses by industry type )	
+	location				string			Draper, Ut						( Store location of the business )
+	created_at				datetime									( Record when contact was initiated )	
+	updated_at				datetime				
+	conversation_id				string			sgfd13...						( save conversation attached to business )
+
+ ___________________
+|   		    |
+|  Messages Table   |
+|___________________|_____________________________________________________________________________________________________________________________________________________
+
+	message_id				string			sdfg13x...					
+	message_string				string 			I miss you tooooo I wish I were home with youuu		( message data )
+	message_datetime			datetime		2023-27-11 10:39:55					( when was this message sent )
+	user_id					string			b615fzd...						( who is this message from? )
+	conversation_id				conversation		xcb6v45...						( conversation message is attached to )
+	previous_message			string			n1xc32v...						( reference to previous message in conversation ) 
+
+
+ ________________________
+|			 |
+|  Conversations Table   |
+|________________________|________________________________________________________________________________________________________________________________________________
+
+	conversation_id				string			sdf3g21...	
+	participant_ids				string[]		[sdf3g21..., 321dgsf..., xcb6v45..., ...]		( a list of user_id's participating in the conversation )
+	last_message_sent			string			321dgsf...						( get the last message sent in the conversation )
+	created_at				datetime									( when the conversation was started )
+	updated_at				datetime
+	related_conversations			string[]		[b615fzd...]						( store conversations related to each other )
+
+
+ _________________
+|		  |
+|  Ticket Table   |
+|_________________|________________________________________________________________________________________________________________________________________________
+
+	ticket_id				string			sdf3g21...
+	ticket_type				ticket_type		
+	urgency_level				number			1, 2, 3					
+	assigned_to				string			b78z6cx...						( assign a ticket to a specific user )
+	status					strig			open, closed, in-progress				( track the status of the ticket )
+	created_at				datetime		
+	updated_at				datetime		
+
+											
+ ______________________
+|		       |
+|  Ticket Type Table   |
+|______________________|________________________________________________________________________________________________________________________________________________
+	
+	ticket_type_id				Number			1, 2, 3...
+	ticket_type_name			string			New Feature
+									Content Update	
+									Technical Issue
+
+	ticket_type_description			string			basic description of what each ticket type means
+
+
+
+ _____________________
+|		      |
+|  Ticket URL Table   |
+|_____________________|________________________________________________________________________________________________________________________________________________
+
+	url_id					string			xbc9v78...
+	attached_ticket				string			sdf3g21...
+	created_at				datetime		
+
+
+
+ _______________________
+|		        |
+|  Ticket Image Table   |
+|_______________________|________________________________________________________________________________________________________________________________________________
+
+	image_id				string			xbc9v78...
+	attached_ticket				string			sdf3g21...
+	location				string			'/ticket_images/xbc9v78...'
+	created_at				datetime		
+
+
+
+
+				
