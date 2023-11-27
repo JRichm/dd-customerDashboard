@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import BusinessNav from "../_bComponents/_bNav";
+import BusinessNav from "../../_bComponents/_bNav";
 
 export default function TicketPage() {
 
