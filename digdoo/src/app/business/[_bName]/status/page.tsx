@@ -1,4 +1,4 @@
-import BusinessNav from "../_bComponents/_bNav";
+import BusinessNav from "../../_bComponents/_bNav";
 
 export default function StatusPage() {
     return (

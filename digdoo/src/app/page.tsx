@@ -24,7 +24,7 @@ export default async function Home() {
         <span><h1 className='text-3xl font-bold m-3'>Digital Doorways</h1></span>
         <span>
           <ul className='flex flex-row gap-6 m-3'>
-            <p>buy new website</p>
+            <p>start new website</p>
             <p>upgrade your website</p>
             <p>host your website</p>
           </ul>
@@ -56,6 +56,11 @@ export default async function Home() {
             <a className='text-xs text-blue-400' href="">Not enrolled? Sign up now.</a>
           </form>
         </div>
+      </div>
+      <div>
+        <span>
+          <h2 className='text-center text-2xl m-4 text-gray-600'>Choose what is right for you</h2>
+        </span>
       </div>
     </main>
   )
