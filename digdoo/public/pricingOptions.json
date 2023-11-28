@@ -1,0 +1,37 @@
+{
+    "options": [
+        {
+            "title": "Basic",
+            "description": "This plan is suitable for small businesses looking for a simple online presence",
+            "optionPerks": [
+                "Wix-based website",
+                "Basic customization (color scheme, logo, basic layout)",
+                "Limited number of pages",
+                "Contact form"
+            ]
+        },
+        {
+            "title": "Standard",
+            "description": "Ideal for businesses that want a more customized and dynamic website",
+            "optionPerks" : [
+                "Custom React-based website",
+                "Responsive design for mobile devices",
+                "Enhanced customization options (custom graphics, advanced layout)",
+                "Integration with social media",
+                "Contact form with additional fields"
+            ]
+        },
+        {
+            "title": "Premium",
+            "description": "Tailored for businesses seeking advanced features and functionalities",
+            "optionPerks": [
+                "Custom React-based website with advanced features",
+                "E-Commerce functionality (if applicable)",
+                "Blog section",
+                "Search Engine optimization (SEO) for better visibility",
+                "Integration with third-party tools or services",
+                "Regular website maintenance and updates"
+            ]
+        }
+    ]
+}
