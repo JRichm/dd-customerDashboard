@@ -11,12 +11,19 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False)
     username = db.Column(db.String(20), nullable=False)
     full_name = db.Column(db.String(30), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=True)
     last_login = db.Column(db.Date, nullable=True)
     provider = db.Column(db.String, nullable=False)
     provider_identifier = db.Column(db.String, nullable=False)
-    is_moderator = db.Column(db.Boolean, default=False)
+    is_developer = db.Column(db.Boolean, default=False)
+    is_business_owner = db.Column(db.Boolean, default=False)
+
+class BusinessUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    business_id = db.Column(db.Integer, db.ForeignKey('business.id'))
 
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -62,6 +69,7 @@ class Ticket(db.Model):
     urgency_level_id = db.Column(db.Integer, db.ForeignKey('urgency_level.id'))
     status_id = db.Column(db.Integer, db.ForeignKey('status_type.id'))
     assigned_to_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    due_date = db.Column(db.Date, nullable=False)
     created_at = db.Column(db.Date, nullable=False)
     updated_at = db.Column(db.Date, nullable=True)
 

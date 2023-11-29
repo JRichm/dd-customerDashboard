@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider =  "postgresql"
+  url      =  env("DATABASE_URL")
+}
+
+model business {
+  id                      Int               @id @default(autoincrement())
+  name                    String            @db.VarChar(30)
+  industry                String            @db.VarChar(30)
+  location                String            @db.VarChar(50)
+  created_at              DateTime          @db.Date
+  updated_at              DateTime?         @db.Date
+  conversation_id         Int?
+  conversation            conversation?     @relation(fields: [conversation_id], references: [id])
+  business_users          business_user[]
+  tickets                 ticket[]
+}
+
+model business_user {
+  id                      Int               @id @default(autoincrement())
+  user_id                 Int?
+  user                    user?             @relation(fields: [user_id], references: [id])
+  business_id             Int?
+  business                business?          @relation(fields: [business_id], references: [id])
+}
+
+model conversation {
+  id                      Int               @id @default(autoincrement())
+  participants            String            @db.VarChar
+  last_message_id         Int?
+  last_message            String?           @db.VarChar
+  created_at              DateTime          @db.Date
+  updated_at              DateTime?         @db.Date
+  related_conversations   String?           @db.VarChar
+  businesses              business[]
+  messages                message[]         @relation(name: "ConversationMessages")
+}
+
+model local_image {
+  id                      Int               @id @default(autoincrement())
+  ticket_id               Int?
+  ticket                  ticket?           @relation(fields: [ticket_id], references: [id])
+  created_at              DateTime          @db.Date
+}
+
+model message {
+  id                      Int               @id @default(autoincrement())
+  data                    String            @db.VarChar(255)
+  from_user_id            Int?
+  from_user               user?             @relation(fields: [from_user_id], references: [id])
+  conversation_id         Int?
+  conversation            conversation?     @relation(name: "ConversationMessages", fields: [conversation_id], references: [id])
+  previous_message_id     Int?
+  created_at              DateTime          @db.Date
+  last_message            String?           @db.VarChar
+}
+
+model status_type {
+  id                      Int               @id @default(autoincrement())
+  level                   String            @db.VarChar(12)
+  tickets                 ticket[]
+}
+
+model ticket {
+  id                      Int               @id @default(autoincrement())
+  business_id             Int?
+  business                business?         @relation(fields: [business_id], references: [id])
+  ticket_type_id          Int?
+  ticket_typ              ticket_type?      @relation(fields: [ticket_type_id], references: [id])
+  urgency_level_id        Int?
+  urgency_level           urgency_level?    @relation(fields: [urgency_level_id], references: [id])
+  status_id               Int?
+  status                  status_type?      @relation(fields: [status_id], references: [id])
+  assigned_to_user_id     Int?
+  assigned_to_user        user?             @relation(fields: [assigned_to_user_id], references: [id])
+  due_date                DateTime          @db.Date
+  created_at              DateTime          @db.Date
+  updated_at              DateTime?         @db.Date
+  local_images            local_image[]
+  urls                    url[]
+}
+
+model ticket_type {
+  id                      Int               @id @default(autoincrement())
+  name                    String            @db.VarChar(20)
+  tickets                 ticket[]
+}
+
+model urgency_level {
+  id                      Int               @id @default(autoincrement())
+  level                   String            @db.VarChar(12)
+  tickets                 ticket[]
+}
+
+model url {
+  id                      Int               @id @default(autoincrement())
+  ticket_id               Int?
+  ticket                  ticket?           @relation(fields: [ticket_id], references: [id])
+  created_at              DateTime          @db.Date
+}
+
+model user {
+  id                      Int               @id @default(autoincrement())
+  email                   String            @db.VarChar
+  username                String            @db.VarChar(20)
+  full_name               String            @db.VarChar(30)
+  password_hash           String            @db.VarChar(255)
+  created_at              DateTime          @db.Date
+  updated_at              DateTime?         @db.Date
+  last_login              DateTime?         @db.Date
+  provider                String            @db.VarChar
+  provider_identifier     String            @db.VarChar
+  is_developer            Boolean?
+  is_business_owner       Boolean?
+  business_users          business_user[]
+  sent_messages           message[]
+  tickets                 ticket[]
+}
